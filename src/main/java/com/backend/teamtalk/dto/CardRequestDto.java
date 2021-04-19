@@ -7,6 +7,6 @@ public class CardRequestDto {
 
     private String title;
     private String description;
-
-    private String comment; //-> 따로 뺄 예정
+//
+//    private String comment; //-> 따로 뺄 예정
 }

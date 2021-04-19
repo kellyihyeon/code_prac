@@ -1,10 +1,12 @@
 package com.backend.teamtalk.controller;
 
+import com.backend.teamtalk.config.CustomUserDetails;
 import com.backend.teamtalk.domain.Board;
 import com.backend.teamtalk.dto.BoardRequestDto;
 import com.backend.teamtalk.repository.BoardRepository;
 import com.backend.teamtalk.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -43,11 +45,19 @@ public class BoardController {
 
 
     //create board
+//    @PostMapping("/api/boards")
+//    public String createBoard(@RequestBody BoardRequestDto requestDto) {
+//        boardService.createBoard(requestDto);
+//        return "create board: success.";
+//    }
+
+    //보드를 만들면 user id 가 저장 돼야 한다.
     @PostMapping("/api/boards")
-    public String createBoard(@RequestBody BoardRequestDto requestDto) {
-        boardService.createBoard(requestDto);
+    public String createBoard(@RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        boardService.createBoard(requestDto, userDetails.getUser().getId());
         return "create board: success.";
     }
+
 
     //update board (title)
     @PutMapping("/api/boards/{board_id}")

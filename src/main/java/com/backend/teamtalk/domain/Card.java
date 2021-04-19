@@ -1,5 +1,6 @@
 package com.backend.teamtalk.domain;
 
+import com.backend.teamtalk.dto.CardDescriptionDto;
 import com.backend.teamtalk.dto.CardRequestDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
@@ -39,9 +40,13 @@ public class Card {
     }
 
 
-    //update card
+    //update card (title)
     public void update(CardRequestDto requestDto) {
         this.title = requestDto.getTitle();
-        this.description = requestDto.getDescription();
     }
+
+    //update card (description)
+//    public void updateDescription(CardDescriptionDto requestDto) {
+//        this.description = requestDto.getDescription();
+//    }
 }

@@ -2,6 +2,7 @@ package com.backend.teamtalk.service;
 
 import com.backend.teamtalk.domain.Card;
 import com.backend.teamtalk.domain.Pin;
+import com.backend.teamtalk.dto.CardDescriptionDto;
 import com.backend.teamtalk.dto.CardRequestDto;
 import com.backend.teamtalk.repository.CardRepository;
 import com.backend.teamtalk.repository.PinRepository;
@@ -57,6 +58,16 @@ public class CardService {
         card.update(requestDto);
     }
 
+//    //update card (description)
+//    @Transactional
+//    public void updateDescription(Long card_id, CardDescriptionDto requestDto) {
+//        Card card = cardRepository.findById(card_id).orElseThrow(
+//                () -> new IllegalArgumentException("There is no card.")
+//        );
+//        card.updateDescription(requestDto);
+//    }
+
+
     //delete card
     public void deleteCard(Long card_id) {
         cardRepository.findById(card_id).orElseThrow(
@@ -64,4 +75,6 @@ public class CardService {
         );
         cardRepository.deleteById(card_id);
     }
+
+
 }

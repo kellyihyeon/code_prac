@@ -1,8 +1,11 @@
 package com.backend.teamtalk.service;
 
+import com.backend.teamtalk.config.CustomUserDetails;
 import com.backend.teamtalk.domain.Board;
+import com.backend.teamtalk.domain.User;
 import com.backend.teamtalk.dto.BoardRequestDto;
 import com.backend.teamtalk.repository.BoardRepository;
+import com.backend.teamtalk.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +22,7 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
 
 
     //get one board
@@ -29,8 +33,16 @@ public class BoardService {
     }
 
     //create board
-    public void createBoard(BoardRequestDto requestDto) {
-        Board board = new Board(requestDto);
+//    public void createBoard(BoardRequestDto requestDto) {
+//        Board board = new Board(requestDto);
+//        boardRepository.save(board);
+//    }
+
+    public void createBoard(BoardRequestDto requestDto, Long user_id) {
+        User user = userRepository.findById(user_id)
+                .orElseThrow(() -> new IllegalArgumentException("nobody"));
+
+        Board board = new Board(requestDto, user);
         boardRepository.save(board);
     }
 

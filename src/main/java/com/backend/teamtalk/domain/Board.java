@@ -35,8 +35,10 @@ public class Board {
 
     //constructor
     //create board -> 인자에 추후 user 추가
-    public Board(BoardRequestDto boardRequestDto) {
+    public Board(BoardRequestDto boardRequestDto, User user) {
         this.title = boardRequestDto.getTitle();
+        this.user = user;
+
     }
 
     //update board
